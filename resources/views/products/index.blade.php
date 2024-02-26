@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+
 <body>
     <!-- A grey horizontal navbar that becomes vertical on small screens -->
     <nav class="navbar navbar-expand-sm bg-dark">
@@ -20,11 +22,18 @@
             </li>
         </ul>
     </nav>
+
+
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-block">
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
     <div class="container">
         <div class="text-right">
             <a href="/products/create" class="btn btn-dark  mt-2">New Product</a>
         </div>
-        
+
         <table class="table table-hover mt-5">
             <thead>
                 <tr>
@@ -38,23 +47,25 @@
             <tbody>
                 @foreach ($products as $item)
                     <tr style="justify-content: center">
-                        <td >{{$loop->index+1}}</td>
-                        <td >
-                            <img src="products/{{$item->image}}" class="rounded-circle" width="50" height="50"  alt="image">
+                        <td>{{ $loop->index + 1 }}</td>
+                        <td>
+                            <img src="products/{{ $item->image }}" class="rounded-circle" width="50" height="50"
+                                alt="image">
                         </td>
-                        <td >{{$item->name}}</td>
-                        <td >{{$item->description}}</td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->description }}</td>
 
                         <td>
-                            <a href="products/edit/{{$item->id}}" class="btn btn-info btn-sm">Edit</a>
-                            <a href="products/delete/{{$item->id}}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="products/edit/{{ $item->id }}" class="btn btn-info btn-sm">Edit</a>
+                            <a href="products/delete/{{ $item->id }}" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                 @endforeach
-                
+
             </tbody>
-        </table>  
+        </table>
     </div>
 
 </body>
+
 </html>
